@@ -11,7 +11,7 @@ module Git
       def process(parent, target, attrs)
         if parent.document.basebackend? 'html'
           prefix = parent.document.attr('git-relative-html-prefix')
-          %(<a href="#{prefix}#{target}.html">#{target}(#{attrs[1]})</a>\n)
+          %(<a href="#{prefix}#{target}.html">#{target}(#{attrs[1]})</a>)
         elsif parent.document.basebackend? 'docbook'
           "<citerefentry>\n" \
             "<refentrytitle>#{target}</refentrytitle>" \
