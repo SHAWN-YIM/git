@@ -334,12 +334,12 @@ clean:
 	$(RM) $(cmds_txt) $(mergetools_txt) *.made
 	$(RM) manpage-base-url.xsl
 
-$(MAN_HTML): %.html : %.txt asciidoc.conf
+$(MAN_HTML): %.html : %.txt asciidoc.conf asciidoctor-extensions.rb
 	$(QUIET_ASCIIDOC)$(RM) $@+ $@ && \
 	$(TXT_TO_HTML) -d manpage -o $@+ $< && \
 	mv $@+ $@
 
-$(OBSOLETE_HTML): %.html : %.txto asciidoc.conf
+$(OBSOLETE_HTML): %.html : %.txto asciidoc.conf asciidoctor-extensions.rb
 	$(QUIET_ASCIIDOC)$(RM) $@+ $@ && \
 	$(TXT_TO_HTML) -o $@+ $< && \
 	mv $@+ $@
@@ -356,7 +356,7 @@ manpage-base-url.xsl: manpage-base-url.xsl.in
 	$(TXT_TO_XML) -d manpage -o $@+ $< && \
 	mv $@+ $@
 
-user-manual.xml: user-manual.txt user-manual.conf
+user-manual.xml: user-manual.txt user-manual.conf asciidoctor-extensions.rb
 	$(QUIET_ASCIIDOC)$(RM) $@+ $@ && \
 	$(TXT_TO_XML) -d book -o $@+ $< && \
 	mv $@+ $@
